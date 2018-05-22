@@ -19,8 +19,8 @@ from qas.candidate_ans import get_candidate_answers
 from qas.constants import EN_MODEL_MD, EN_MODEL_DEFAULT
 from qas import __version__
 
-__author__ = "Shirish Kadam"
-__copyright__ = "Copyright (C) 2017  Shirish Kadam"
+__author__ = "Ankit Malhotra"
+__copyright__ = "Copyright (C) 2017  Ankit Malhotra"
 __license__ = "GNU General Public License v3 (GPLv3)"
 
 _logger = logging.getLogger(__name__)
@@ -55,8 +55,7 @@ def get_nlp(language, lite, lang_model=""):
                 nlp = spacy.load(EN_MODEL_DEFAULT)
 
     elif not language == 'en':
-        print('Currently only English language is supported. '
-              'Please contribute to https://github.com/5hirish/adam_qas to add your language.')
+        print('Currently only English language is supported.')
         sys.exit(0)
 
     return nlp
@@ -94,6 +93,7 @@ class QasInit:
     def process_question(self):
 
         self.question_class = classify_question(self.question_doc)
+        print("class:{}".format(self.question_class))
         _logger.info("Question Class: {}".format(self.question_class))
 
         self.question_keywords = extract_features(self.question_class, self.question_doc)
